@@ -1,27 +1,123 @@
-# Frontend
+# Elyra Chat 💬
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.18.
+A modern real-time chat application built with **Angular** on the frontend and **FastAPI** on the backend, with **WebSocket** communication for real-time messaging.
 
-## Development server
+## ✦ About
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Elyra Chat is a real-time communication application designed to provide a smooth and responsive messaging experience through a modern Angular interface and a Python-based FastAPI backend.
 
-## Code scaffolding
+The project demonstrates frontend development, backend API integration, real-time communication and modern application architecture.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## 🛠️ Technologies
 
-## Build
+### Frontend
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+* Angular
+* TypeScript
+* HTML5
+* CSS3
 
-## Running unit tests
+### Backend
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+* Python
+* FastAPI
+* WebSocket
 
-## Running end-to-end tests
+### Tools
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+* Git
+* GitHub
+* npm
+* Python Virtual Environment
 
-## Further help
+## ✨ Features
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+* Real-time messaging
+* WebSocket-based communication
+* Modern responsive interface
+* Angular component-based frontend
+* FastAPI backend
+* Frontend-backend integration
+* Real-time connection handling
+* Clean and user-friendly chat experience
+
+## 🏗️ Project Structure
+
+```text
+elyra-chat/
+├── frontend/
+├── backend/
+├── README.md
+└── ...
+```
+
+## ⚙️ Development
+
+### Frontend
+
+Navigate to the frontend directory:
+
+```bash
+cd frontend
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start the Angular development server:
+
+```bash
+npm start
+```
+
+### Backend
+
+Navigate to the backend directory:
+
+```bash
+cd backend
+```
+
+Create and activate a virtual environment:
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+
+Install the required dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+Start the FastAPI server:
+
+```bash
+uvicorn main:app --reload
+```
+
+## 🔌 Real-Time Communication
+
+Elyra Chat uses **WebSocket technology** to maintain a real-time connection between the Angular frontend and FastAPI backend, allowing messages and connection events to be handled without relying on traditional request-response communication for every interaction.
+
+## 📚 Learning Focus
+
+This project was built to strengthen practical experience with:
+
+* Angular and TypeScript
+* FastAPI
+* WebSocket communication
+* Frontend and backend integration
+* API-based application architecture
+* Real-time web applications
+
+## 👩‍💻 Author
+
+**Maham Rao**
+
+Full Stack Developer
+
