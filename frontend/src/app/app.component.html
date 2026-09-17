@@ -1,0 +1,618 @@
+<!-- =========================
+     LANDING PAGE
+========================= -->
+
+<div class="landing-page" *ngIf="screen === 'landing'">
+
+  <header class="landing-nav">
+
+    <button class="elyra-logo" (click)="goToLanding()">
+      <span class="logo-square">E</span>
+      <span>ELYRA</span>
+    </button>
+
+    <nav>
+      <button (click)="goToLogin()">Sign in</button>
+
+      <button
+        class="nav-cta"
+        (click)="goToLogin()">
+        Get started
+      </button>
+    </nav>
+
+  </header>
+
+
+  <main class="landing-main">
+
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
+
+    <p class="landing-label">
+      INTELLIGENCE FOR THE WAY YOU BUILD
+    </p>
+
+    <h1>
+      Think.
+      <span>Build.</span>
+      Evolve.
+    </h1>
+
+    <p class="landing-copy">
+      Elyra is an intelligent workspace for ideas, code,
+      problem-solving and everything in between.
+    </p>
+
+
+    <button
+      class="landing-input"
+      (click)="goToLogin()">
+
+      <span>What would you like to build?</span>
+
+      <b>↑</b>
+
+    </button>
+
+
+    <div class="landing-actions">
+
+      <button
+        class="primary-landing"
+        (click)="goToLogin()">
+        Start building
+        <span>↗</span>
+      </button>
+
+      <button
+        class="secondary-landing"
+        (click)="demoEnter()">
+        Explore demo
+      </button>
+
+    </div>
+
+
+    <div class="landing-meta">
+
+      <span>
+        <i></i>
+        Intelligent workspace
+      </span>
+
+      <span>Real-time conversations</span>
+
+      <span>Built for creators & developers</span>
+
+    </div>
+
+  </main>
+
+
+  <footer class="landing-footer">
+
+    <span>© 2026 ELYRA</span>
+
+    <div>
+      <span>Privacy</span>
+      <span>Terms</span>
+      <span>Documentation</span>
+    </div>
+
+  </footer>
+
+</div>
+
+
+<!-- =========================
+     LOGIN PAGE
+========================= -->
+
+<div class="login-page" *ngIf="screen === 'login'">
+
+  <button
+    class="login-brand"
+    (click)="goToLanding()">
+
+    <span class="logo-square">E</span>
+    <span>ELYRA</span>
+
+  </button>
+
+
+  <div class="login-center">
+
+    <div class="login-symbol">
+      E
+    </div>
+
+    <p class="login-label">
+      ELYRA WORKSPACE
+    </p>
+
+    <h1>
+      Welcome back.
+    </h1>
+
+    <p class="login-description">
+      Sign in to continue your workspace.
+    </p>
+
+
+    <form
+      class="login-form"
+      (submit)="signIn($event)">
+
+      <label>
+        Email
+
+        <input
+          type="email"
+          [(ngModel)]="email"
+          name="email"
+          placeholder="you@example.com"
+          autocomplete="email"
+        />
+
+      </label>
+
+
+      <label>
+        Password
+
+        <input
+          type="password"
+          [(ngModel)]="password"
+          name="password"
+          placeholder="••••••••"
+          autocomplete="current-password"
+        />
+
+      </label>
+
+
+      <button
+        type="submit"
+        class="login-submit">
+        Continue
+        <span>→</span>
+      </button>
+
+    </form>
+
+
+    <div class="login-divider">
+      <span>or</span>
+    </div>
+
+
+    <button
+      class="google-button"
+      (click)="demoEnter()">
+
+      <span class="google-icon">G</span>
+
+      Continue with Google
+
+    </button>
+
+
+    <p class="login-footnote">
+      By continuing, you agree to Elyra's
+      <span>Terms</span> and <span>Privacy Policy</span>.
+    </p>
+
+
+    <button
+      class="back-link"
+      (click)="goToLanding()">
+      ← Back to Elyra
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     CHAT WORKSPACE
+========================= -->
+
+<div class="elyra-shell" *ngIf="screen === 'workspace'">
+
+  <aside
+    class="sidebar"
+    [class.sidebar-open]="sidebarOpen">
+
+    <div class="sidebar-top">
+
+      <button
+        class="brand-button"
+        (click)="newChat()">
+
+        <span class="brand-mark">E</span>
+
+        <span class="brand-name">
+          ELYRA
+          <small>CHAT</small>
+        </span>
+
+      </button>
+
+      <button
+        class="close-sidebar"
+        (click)="sidebarOpen = false">
+        ×
+      </button>
+
+    </div>
+
+
+    <button
+      class="new-chat-button"
+      (click)="newChat()">
+
+      <span>＋</span>
+      New chat
+
+    </button>
+
+
+    <div class="sidebar-search">
+
+      <span>⌕</span>
+
+      <input
+        type="text"
+        [(ngModel)]="chatSearch"
+        placeholder="Search chats"
+      />
+
+    </div>
+
+
+    <div class="chat-history">
+
+      <div class="history-label">
+        TODAY
+      </div>
+
+      <button
+        class="history-item"
+        *ngFor="let chat of filteredChats"
+        [class.active]="chat.active"
+        (click)="selectChat(chat)">
+
+        <span class="history-icon">○</span>
+
+        <span class="history-content">
+
+          <strong>{{ chat.title }}</strong>
+
+          <small>{{ chat.time }}</small>
+
+        </span>
+
+        <span class="history-more">
+          •••
+        </span>
+
+      </button>
+
+      <div
+        class="no-chats"
+        *ngIf="filteredChats.length === 0">
+        No chats found.
+      </div>
+
+    </div>
+
+
+    <div class="sidebar-bottom">
+
+      <button class="sidebar-option">
+        <span>◌</span>
+        Explore
+      </button>
+
+      <button class="sidebar-option">
+        <span>⚙</span>
+        Settings
+      </button>
+
+      <div class="profile-card">
+
+        <div class="profile-avatar">
+          M
+        </div>
+
+        <div>
+          <strong>Maham</strong>
+          <span>Free workspace</span>
+        </div>
+
+        <button>•••</button>
+
+      </div>
+
+    </div>
+
+  </aside>
+
+
+  <section class="main-area">
+
+    <header class="topbar">
+
+      <div class="topbar-left">
+
+        <button
+          class="mobile-menu-button"
+          (click)="sidebarOpen = true">
+          ☰
+        </button>
+
+        <button class="workspace-button">
+          Elyra
+          <span>⌄</span>
+        </button>
+
+        <span class="separator">/</span>
+
+        <span class="current-chat">
+          {{ currentTitle }}
+        </span>
+
+      </div>
+
+
+      <div class="topbar-right">
+
+        <button class="icon-action">
+          ⌕
+        </button>
+
+        <button
+          class="model-button"
+          (click)="modelOpen = !modelOpen">
+
+          <span class="model-dot"></span>
+
+          {{ selectedModel.name }}
+
+          <span>⌄</span>
+
+        </button>
+
+
+        <div
+          class="model-menu"
+          *ngIf="modelOpen">
+
+          <button
+            *ngFor="let model of models"
+            (click)="selectModel(model)">
+
+            <span class="model-menu-dot"></span>
+
+            <span>
+              <strong>{{ model.name }}</strong>
+              <small>{{ model.description }}</small>
+            </span>
+
+            <span
+              *ngIf="selectedModel.name === model.name">
+              ✓
+            </span>
+
+          </button>
+
+        </div>
+
+      </div>
+
+    </header>
+
+
+    <main class="chat-area">
+
+      <div class="conversation">
+
+
+        <!-- WELCOME -->
+
+        <section
+          class="welcome"
+          *ngIf="messages.length === 0">
+
+          <div class="welcome-orb">
+            <span>E</span>
+          </div>
+
+          <p class="welcome-eyebrow">
+            ELYRA
+          </p>
+
+          <h1>
+            What can I help
+            <span>you build?</span>
+          </h1>
+
+          <p class="welcome-description">
+            Ask questions, write code, debug problems,
+            brainstorm ideas, or explore something new.
+          </p>
+
+
+          <div class="starter-grid">
+
+            <button
+              *ngFor="let prompt of starterPrompts"
+              (click)="useStarterPrompt(prompt.text)">
+
+              <span>{{ prompt.icon }}</span>
+
+              <div>
+                <strong>{{ prompt.title }}</strong>
+                <small>{{ prompt.description }}</small>
+              </div>
+
+              <b>↗</b>
+
+            </button>
+
+          </div>
+
+        </section>
+
+
+        <!-- MESSAGES -->
+
+        <section
+          class="messages"
+          *ngIf="messages.length > 0">
+
+          <article
+            *ngFor="let message of messages"
+            class="message-row"
+            [class.user-row]="message.role === 'user'"
+            [class.ai-row]="message.role === 'assistant'">
+
+            <div
+              class="message-avatar"
+              [class.user-avatar]="message.role === 'user'"
+              [class.ai-avatar]="message.role === 'assistant'">
+
+              {{ message.role === 'user' ? 'M' : 'E' }}
+
+            </div>
+
+
+            <div class="message-body">
+
+              <div class="message-meta">
+
+                <strong>
+                  {{ message.role === 'user' ? 'You' : 'Elyra' }}
+                </strong>
+
+                <span>
+                  {{ message.time }}
+                </span>
+
+              </div>
+
+
+              <div class="message-content">
+
+                <p>
+                  {{ message.content }}
+                </p>
+
+              </div>
+
+
+              <div
+                class="message-actions"
+                *ngIf="message.role === 'assistant'">
+
+                <button
+                  (click)="copyText(message.content)">
+                  Copy
+                </button>
+
+                <button>
+                  Regenerate
+                </button>
+
+                <button>•••</button>
+
+              </div>
+
+            </div>
+
+          </article>
+
+
+          <div
+            class="typing-row"
+            *ngIf="isTyping">
+
+            <div class="message-avatar ai-avatar">
+              E
+            </div>
+
+            <div class="typing-bubble">
+
+              <span></span>
+              <span></span>
+              <span></span>
+
+            </div>
+
+          </div>
+
+        </section>
+
+      </div>
+
+
+      <!-- COMPOSER -->
+
+      <div class="composer-wrapper">
+
+        <div class="composer">
+
+          <textarea
+            [(ngModel)]="messageText"
+            (keydown)="handleKeydown($event)"
+            placeholder="Message Elyra..."
+            rows="1">
+          </textarea>
+
+
+          <div class="composer-bottom">
+
+            <div class="composer-left">
+
+              <button>＋ Add</button>
+
+              <button>◇ Tools</button>
+
+            </div>
+
+
+            <div class="composer-right">
+
+              <span class="shortcut">
+                ⌘ Enter
+              </span>
+
+              <button
+                class="send-button"
+                [class.ready]="messageText.trim()"
+                (click)="sendMessage()">
+
+                ↑
+
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <p class="composer-note">
+          Elyra can make mistakes. Verify important information.
+        </p>
+
+      </div>
+
+    </main>
+
+  </section>
+
+</div>
