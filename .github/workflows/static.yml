@@ -26,12 +26,13 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 14
-          
 
       - name: Install dependencies
+        working-directory: ./frontend
         run: npm install
 
       - name: Build Angular app
+        working-directory: ./frontend
         run: npx ng build --configuration production --base-href /elyra-chat/
 
       - name: Setup Pages
@@ -40,7 +41,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist/frontend
+          path: ./frontend/dist/frontend
 
   deploy:
     needs: build
