@@ -153,7 +153,7 @@ export class AppComponent implements OnDestroy {
 
   connectToBackend(): void {
     try {
-      this.socket = new WebSocket('ws://127.0.0.1:8000/ws/chat');
+     this.socket = new WebSocket('wss://mahamrao.pythonanywhere.com/ws/chat');
 
       this.socket.onopen = () => {
         this.connected = true;
